@@ -11,7 +11,7 @@ $users = [];
 // 1. If someone already logged in, redirect to secret page.
 if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
-  header('Location:forside.php'); 
+  header('Location:index.php'); 
 } 
 
 // 2. Otherwise, if known user tried to log in, register her as
@@ -20,7 +20,7 @@ foreach($users as $user){
 if (isset($_POST['username']) && $_POST['username'] == $user['username'] && $_POST['password'] == $user['password']) // Hvis brugeren har skrevet noget og de har skrevet mary, så kan man se hemmelig information, som er på index.php
 {
   $_SESSION['user'] = $_POST['username'];
-  header('Location:forside.php');
+  header('Location:index.php');
   exit;
 } 
 }
