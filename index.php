@@ -108,6 +108,7 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
 }
   ?>
 </ul>
+    <iframe src="https://scratch.mit.edu/projects/394646634/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
 </main>
 </div>
   </body>
