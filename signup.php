@@ -2,7 +2,7 @@
 session_start(); //aktivere sessions
 if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
-  header("Location:forside.php"); 
+  header("Location:index.php"); 
 } 
 ?>
 
