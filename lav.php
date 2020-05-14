@@ -91,7 +91,7 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
 <main>
       <form method="POST" action="derp.php"> 
         Title: <input type="text" name="title"> <br>
-        Blog Post: <input type='text' name='post'>
+        Blog Post: <input type='text' name='post'> <br>
         Thumbnail: <input type="file"
         name="thumbnail"
        accept="image/png, image/jpeg">
