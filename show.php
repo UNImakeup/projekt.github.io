@@ -129,10 +129,15 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
   $title = $question['Titel'];
   $post = $question['Post'];
   $forfatter = $question['Forfatter'];
+  $thumbnail = $question['thumbnail'];
 
   echo "<h1>$title</h1>",
     "<p>Written by: $forfatter</p>",
-    "<p> $post</p>";
+    "<p> $post</p>",
+    "<img src='",
+    $thumbnail,
+    "'>";
+    
 
   echo<<<END
 </header>
