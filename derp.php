@@ -11,11 +11,13 @@ if (empty($_SESSION['user'])) //sandt hvis der mangler sessionsvariabel use (som
 $title=$_POST['title'];
 $post=$_POST['post'];
 $user=$_SESSION['user'];
+$thumbnail=$_POST['thumbnail'];
 
 $question = [
     "Titel" => $title,
     "Post" => $post,
     "Forfatter" => $user,
+    "thumbnail" => $thumbnail
       ];
 
 $questions = [];
