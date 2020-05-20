@@ -11,7 +11,7 @@ if (empty($_SESSION['user'])) //sandt hvis der mangler sessionsvariabel use (som
 $title=$_POST['title'];
 $post=$_POST['post'];
 $user=$_SESSION['user'];
-$thumbnail=$_POST['thumbnail'];
+$thumbnail=$_FILES['thumbnail']['name'];
 
 $question = [
     "Titel" => $title,
@@ -33,7 +33,13 @@ $questions = [];
  // 4. 
   $string = json_encode($questions);
   file_put_contents("sporgsmal.txt", $string);
+  
+  if(isset($_POST['submit1'])){
+    $fnm=$_FILES['thumbnail']['name'];
+    $dst="./image/".$fnm;
+    move_uploaded_file($_FILES["thumbnail"]["tmp_name"],$dst);
+}
 
-  $nytsvar=count($questions);
+  $nytsvar=count($questions)-1;
   header("Location: show.php?id=$nytsvar");
 ?>

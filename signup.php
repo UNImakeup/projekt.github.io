@@ -10,6 +10,7 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
   <html>
     <head>
       <title>Signup</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style>
                     ul.navbar {
   list-style-type: none;
@@ -58,14 +59,32 @@ input[type=date] {
  
   border-radius: 4px;
 }
-
+ .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+        .search-container {
+  float: right;
+}
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
       </style>
     </head>
     <body>
  <nav>
   <ul class="navbar">
   <li class="navpunkt"><a class="navlink" href="index.php">Forside</a></li>
-  <li class="navpunkt"><a class="navlink" href="lav.php">Lav Sp&oslash;rgsm&aring;l</a></li>
+  <li class="navpunkt"><a class="navlink" href="emner.php">Lav en Artikel</a></li>
 <?php 
 if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
@@ -88,6 +107,14 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
         "</li>";
 } 
 ?>
+      <li class="navpunkt" style='float:right'>
+      <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="S&oslash;g efter artikler/kilder" name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+      </li>
   </ul>
  </nav>
 
@@ -104,8 +131,8 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
     Teacher <input type='radio' name='role' value='teacher'>
     <input type='submit' value='Opret' class='button'>
     <br>
-    Already have a user? <a href='login.php'>
-          login here
+    Har du allerede en bruger? <a href='login.php'>
+          Login her
         </a>
 </form>
 </main>

@@ -12,6 +12,7 @@ if (empty($_SESSION['user'])) //sandt hvis der mangler sessionsvariabel use (som
   <html>
     <head>
       <title>Submit Post</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
                         ul.navbar {
   list-style-type: none;
@@ -49,10 +50,41 @@ li a.navlink:hover {
   margin: 5px;
 }
 input[type=text] {
- 
   border-radius: 4px;
 }
-
+        input[type=file] {
+  border-radius: 2px;
+}
+        textarea{
+         border-radius: 4px;     
+        }
+        main{
+            margin-left: 40%;
+            
+        }
+        p{
+            color: darkcyan;
+                font-family: fantasy;
+        }
+         .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+        .search-container {
+  float: right;
+}
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
     </style>
     </head>
     <body>
@@ -60,7 +92,7 @@ input[type=text] {
  <nav>
   <ul class="navbar">
   <li class="navpunkt"><a class="navlink" href="index.php">Forside</a></li>
-  <li class="navpunkt"><a class="navlink active" href="lav.php">Lav Sp&oslash;rgsm&aring;l</a></li>
+  <li class="navpunkt"><a class="navlink active" href="emner.php">Lav en Artikel</a></li>
 <?php 
 if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
@@ -76,26 +108,37 @@ if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke 
 if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
    echo "<li class='navpunkt' style='float:right'>",
-        "<a class='navlink'>",
+        "<a class='navlink' href='profil.php'>",
         $_SESSION['user'],
         "<img src='profil.png' height='12' width='12' style='margin:0px 10px'>",
         "</a>",
         "</li>";
 } 
 ?>
+       <li class="navpunkt" style='float:right'>
+      <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="S&oslash;g efter artikler/kilder" name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+      </li>
   </ul>
  </nav>
 
 
 <div style="margin-top:50px;">
 <main>
-      <form method="POST" action="derp.php"> 
-        Title: <input type="text" name="title"> <br>
-        Blog Post: <input type='text' name='post'> <br>
-        Thumbnail: <input type="file"
+      <form method="POST" action="derp.php" enctype="multipart/form-data"> 
+        <p>Titel</p> <input type="text" name="title"> <br>
+        <p>Artiklens Indhold</p> 
+          <textarea name="post" rows="10" cols="30"></textarea>
+          <br>
+        <p>Thumbnail</p> <input type="file"
         name="thumbnail"
        accept="image/png, image/jpeg">
-          <input type="submit" value="Submit" class="button">
+          <br>
+          <input type="submit" name="submit1" value="Submit" class="button">
       </form>
 </main>
 </div>

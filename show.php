@@ -5,6 +5,7 @@ session_start();
   <html>
     <head>
       <title>Question</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style>
           .svarForm{
               display: none;
@@ -43,6 +44,7 @@ li a.navlink:hover {
   border-radius: 8px;
   border: 1px solid #FF6400;
   margin: 5px;
+      cursor: pointer;
 }
 input[type=text] {
  
@@ -68,14 +70,45 @@ input[type=text] {
 h1{
             font-family: fantasy;
           }
+          .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+        .search-container {
+  float: right;
+}
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+          button.knap{     
+  background-color: darkcyan; /* Green */
+  border: none;
+  color: white;
 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 2px;
+          }
      </style>
     </head>
     <body>
  <nav>
   <ul class="navbar">
   <li class="navpunkt"><a class="navlink" href="index.php">Forside</a></li>
-  <li class="navpunkt"><a class="navlink" href="lav.php">Lav Sp&oslash;rgsm&aring;l</a></li>
+  <li class="navpunkt"><a class="navlink" href="emner.php">Lav en Artikel</a></li>
 <?php 
 if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
@@ -91,13 +124,21 @@ if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke 
 if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
    echo "<li class='navpunkt' style='float:right'>",
-        "<a class='navlink'>",
+        "<a class='navlink' href='profil.php'>",
         $_SESSION['user'],
         "<img src='profil.png' height='12' width='12' style='margin:0px 10px'>",
         "</a>",
         "</li>";
 } 
 ?>
+      <li class="navpunkt" style='float:right'>
+      <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="S&oslash;g efter artikler/kilder" name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+      </li>
   </ul>
  </nav>
 
@@ -133,10 +174,8 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
 
   echo "<h1>$title</h1>",
     "<p>Written by: $forfatter</p>",
-    "<p> $post</p>",
-    "<img src='",
-    $thumbnail,
-    "'>";
+    "<img src='./image/$thumbnail' width=60% height=60% >",
+    "<p> $post</p>";
     
 
   echo<<<END
@@ -157,6 +196,8 @@ Dit Svar: <input type="text" name="answer"> <br>
 END;
 
 ?>
+    <button class="knap">Del</button>
+    <button class="knap">Upvote</button>
           <hr>
       <script>
       function svarFunction(){
@@ -186,7 +227,7 @@ if($_GET['id']==$answer['id']){
 </article>
 </main>
 <aside class="flex-item two">
-     <h1>Related</h1>
+     <h1>Andre Artikler</h1>
 <ul>
   <?php
   foreach($questions as $i => $question){

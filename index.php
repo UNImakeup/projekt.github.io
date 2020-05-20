@@ -13,7 +13,8 @@ session_start();
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Forside</title>
+    <title>Bideo</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
       ul.navbar {
   list-style-type: none;
@@ -60,13 +61,38 @@ li.qlink{
 li a.qlinka{
   text-decoration: none;
 }
+        p{
+            margin-top: 2px;
+        }
+        .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+        .search-container {
+  float: right;
+}
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+        h1{
+            text-align: center;
+        }
 </style>
   </head>
   <body>
  <nav>
   <ul class="navbar">
   <li class="navpunkt"><a class="navlink active" href="index.php">Forside</a></li>
-  <li class="navpunkt"><a class="navlink" href="lav.php">Lav Sp&oslash;rgsm&aring;l</a></li>
+  <li class="navpunkt"><a class="navlink" href="emner.php">Lav en Artikel</a></li>
 <?php 
 if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
@@ -82,17 +108,26 @@ if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke 
 if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
    echo "<li class='navpunkt' style='float:right'>",
-        "<a class='navlink'>",
+        "<a class='navlink' href='profil.php'>",
         $_SESSION['user'],
         "<img src='profil.png' height='12' width='12' style='margin:0px 10px'>",
         "</a>",
         "</li>";
 } 
 ?>
+      <li class="navpunkt" style='float:right'>
+      <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="S&oslash;g efter artikler/kilder" name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+      </li>
   </ul>
  </nav>
 <div style="margin-top:50px;">
 <main>
+    <h1>Popul&aelig;re Artikler</h1>
 <ul class="q">
   <?php
   foreach($questions as $i => $question){
@@ -103,13 +138,17 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
         "<br>",
         "<a class='qlinka' href='show.php?id=$i'>",
         $question['Titel'],
+        "<img src='./image/",
+        $question['thumbnail'],
+        "' width=100% height=auto>",
         "<a/>",
+      "<br>",
+        "<p>0 Upvotes & 0 Delinger</p>",
         "</li>";
 }
   ?>
 </ul>
-    <iframe src="https://scratch.mit.edu/projects/394646634/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
-</main>
+    </main>
 </div>
   </body>
 </html>

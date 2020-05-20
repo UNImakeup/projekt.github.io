@@ -29,6 +29,7 @@ if (isset($_POST['username']) && $_POST['username'] == $user['username'] && $_PO
   <html>
     <head>
       <title>Login</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style>
 ul.navbar {
   list-style-type: none;
@@ -73,14 +74,32 @@ input[type=password] {
  
   border-radius: 4px;
 }
-
+ .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+        .search-container {
+  float: right;
+}
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
       </style>
     </head>
     <body>
  <nav>
   <ul class="navbar">
   <li class="navpunkt"><a class="navlink" href="index.php">Forside</a></li>
-  <li class="navpunkt"><a class="navlink" href="lav.php">Lav Sp&oslash;rgsm&aring;l</a></li>
+  <li class="navpunkt"><a class="navlink" href="emner.php">Lav en Artikel</a></li>
 <?php 
 if (empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikke er tom har brugeren altså indtastet informationen.
 {
@@ -103,6 +122,14 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
         "</li>";
 } 
 ?>
+       <li class="navpunkt" style='float:right'>
+      <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="S&oslash;g efter artikler/kilder" name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+      </li>
   </ul>
 </nav>
 <div style="margin-top:50px;">
@@ -112,8 +139,8 @@ if (! empty($_SESSION['user']))  //Undersøger om man er logget ind. Hvis den ikk
         Username: <input type="text" name="username"> <br>
         Password: <input type='password' name='password'>
         <input type="submit" value="Login" class='button'>
-        not signed up? <a href="signup.php">
-          make a user
+        Har du ikke en bruger? <a href="signup.php">
+          Lav en bruger
         </a>
       </form>
 </main>
